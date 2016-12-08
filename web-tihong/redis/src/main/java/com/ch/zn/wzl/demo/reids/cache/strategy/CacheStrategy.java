@@ -1,10 +1,15 @@
 package com.ch.zn.wzl.demo.reids.cache.strategy;
 
+import java.lang.reflect.Method;
+
+import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
+
 public interface CacheStrategy {
 
-	boolean hasCache(String[] key);
+	String getStrategy();
 
-	<T> T getCache(String[] key, String options);
+	void cacheVal(MethodsMapCache mapCaches, Object[] args, Object val);
 
-	void cacheVal(int seconds, String[] key, Object val);
+	Object getCache(MethodsMapCache methodsMapCache, Object[] args, Method method);
+
 }

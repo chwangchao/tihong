@@ -3,102 +3,116 @@ package com.zh.cn.wzl.demo.business.service;
 import java.util.List;
 import java.util.Map;
 
-import com.github.pagehelper.Page;
+import org.springframework.stereotype.Service;
 
+import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
+import com.github.pagehelper.Page;
+import com.zh.cn.wzl.demo.business.entity.ImUser;
+
+@Service
 public class CacheTestServiceImpl implements CacheTestService {
 
+	@MethodsMapCache(cacheTime = 300)
 	@Override
-	public <E> E cacheTest_object() {
+	public ImUser cacheTest_object() {
+		System.out.println("CacheTestServiceImpl.cacheTest_object(0)");
+		ImUser imUser = new ImUser();
+		return imUser;
+	}
+
+	@MethodsMapCache(cacheTime = 300, key = "testKey")
+	@Override
+	public ImUser cacheTest_object(Object args) {
+		System.out.println("CacheTestServiceImpl.cacheTest_object(1)");
+		ImUser imUser = new ImUser();
+		imUser.setUid(args.toString());
+		return imUser;
+	}
+
+	@MethodsMapCache(cacheTime = 300, targetArgs = { "args" })
+	@Override
+	public ImUser cacheTest_object(Object args, Object args2) {
+		System.out.println("CacheTestServiceImpl.cacheTest_object(2)");
+		ImUser imUser = new ImUser();
+		imUser.setImuid(args.toString());
+		imUser.setImpwd(args.toString());
+		return imUser;
+	}
+
+	@Override
+	public ImUser cacheTest_object(Object args, Object args2, Object args3) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> E cacheTest_object(Object args) {
+	public List cacheTest_list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> E cacheTest_object(Object args, Object args2) {
+	public List cacheTest_list(Object args) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> E cacheTest_object(Object args, Object args2, Object args3) {
+	public List cacheTest_list(Object args, Object args2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> List<E> cacheTest_list() {
+	public List cacheTest_list(Object args, Object args2, Object args3) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> List<E> cacheTest_list(Object args) {
+	public Map cacheTest_map() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> List<E> cacheTest_list(Object args, Object args2) {
+	public Map cacheTest_map(Object args) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> List<E> cacheTest_list(Object args, Object args2, Object args3) {
+	public Map cacheTest_map(Object args, Object args2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <K, V> Map<K, V> cacheTest_map() {
+	public Map cacheTest_map(Object args, Object args2, Object args3) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <K, V> Map<K, V> cacheTest_map(Object args) {
+	public Page cacheTest_wap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <K, V> Map<K, V> cacheTest_map(Object args, Object args2) {
+	public Page cacheTest_wap(Object args) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <K, V> Map<K, V> cacheTest_map(Object args, Object args2, Object args3) {
+	public Page cacheTest_wap(Object args, Object args2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <E> Page<E> cacheTest_wap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <E> Page<E> cacheTest_wap(Object args) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <E> Page<E> cacheTest_wap(Object args, Object args2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <E> Page<E> cacheTest_wap(Object args, Object args2, Object args3) {
+	public Page cacheTest_wap(Object args, Object args2, Object args3) {
 		// TODO Auto-generated method stub
 		return null;
 	}

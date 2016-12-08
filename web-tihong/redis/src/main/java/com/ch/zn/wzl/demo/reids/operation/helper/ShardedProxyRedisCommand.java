@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.ch.zn.wzl.demo.reids.operation.target.ShardedRedisOperaction;
 
@@ -15,8 +14,7 @@ import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
 
-@Component
-public class ShardedProxyRedisCommand implements ProxyReidsCommand {
+public class ShardedProxyRedisCommand implements ProxyRedisCommand {
 
 	@Autowired
 	ShardedRedisOperaction shardedRedisOperaction;

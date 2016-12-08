@@ -15,6 +15,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.ch.zn.wzl.demo</groupId>
+			<artifactId>redis</artifactId>
+			<version>${parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ch.zn.wzl.demo</groupId>
 			<artifactId>business</artifactId>
 			<version>${parent.version}</version>
 		</dependency>

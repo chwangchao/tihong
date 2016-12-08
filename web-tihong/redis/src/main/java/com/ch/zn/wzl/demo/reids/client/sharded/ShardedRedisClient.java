@@ -10,16 +10,24 @@ import redis.clients.jedis.ShardedJedisPool;
 
 public class ShardedRedisClient implements RedisClient {
 
-	public Map<Integer, ShardedJedisPool> pools;
+	protected Map<Integer, ShardedJedisPool> poolsMap;
+
+	public Map<Integer, ShardedJedisPool> getPoolsMap() {
+		return poolsMap;
+	}
+
+	public void setPoolsMap(Map<Integer, ShardedJedisPool> poolsMap) {
+		this.poolsMap = poolsMap;
+	}
 
 	@Override
 	public JedisCommands getConnection(int dbIndex) {
-		return pools.get(dbIndex).getResource();
+		return poolsMap.get(dbIndex).getResource();
 	}
 
 	@Override
 	public void closeConnection(int dbIndex, JedisCommands jedisCommands) {
-		pools.get(dbIndex).returnResourceObject((ShardedJedis) jedisCommands);
+		poolsMap.get(dbIndex).returnResourceObject((ShardedJedis) jedisCommands);
 	}
 
 }

@@ -19,7 +19,15 @@ import redis.clients.jedis.JedisCommands;
 public class RedisOperationProxy {
 
 	@Autowired
-	RedisClient redisClient;
+	private RedisClient redisClient;
+
+	public RedisClient getRedisClient() {
+		return redisClient;
+	}
+
+	public void setRedisClient(RedisClient redisClient) {
+		this.redisClient = redisClient;
+	}
 
 	@Around("@annotation(com.ch.zn.wzl.demo.reids.operation.annotations.RedisOperation)")
 	public Object proxyMethodCache(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
