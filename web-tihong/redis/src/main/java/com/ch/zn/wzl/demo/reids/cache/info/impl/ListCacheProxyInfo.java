@@ -4,6 +4,10 @@ import java.lang.reflect.Method;
 
 import com.ch.zn.wzl.demo.reids.cache.serialization.Serialization;
 
+/**
+ * list类型序列化
+ *
+ */
 public class ListCacheProxyInfo extends SimpleCacheProxyInfo {
 
 	private Class<?> cls;

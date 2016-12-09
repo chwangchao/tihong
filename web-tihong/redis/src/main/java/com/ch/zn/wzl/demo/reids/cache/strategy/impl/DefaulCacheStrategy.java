@@ -1,8 +1,8 @@
 package com.ch.zn.wzl.demo.reids.cache.strategy.impl;
 
-import com.ch.zn.wzl.demo.reids.cache.strategy.abs.AbstractMapCacheStrategy;
+import com.ch.zn.wzl.demo.reids.cache.strategy.abs.AbstractDefaultCacheStrategy;
 
-public class DefaulCacheStrategy extends AbstractMapCacheStrategy {
+public class DefaulCacheStrategy extends AbstractDefaultCacheStrategy {
 
 	public static final String DefaulCacheStrategy = "DefaulCacheStrategy";
 

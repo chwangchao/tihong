@@ -3,7 +3,7 @@ package com.ch.zn.wzl.demo.reids.cache.info;
 import com.ch.zn.wzl.demo.reids.cache.serialization.Serialization;
 
 /**
- * 缓存代理信息 主管缓存序列化
+ * 缓存代理信息 包括序列化方式,缓存信息等
  *
  */
 public interface ICacheProxyInfo {

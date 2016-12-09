@@ -6,7 +6,7 @@ import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
 import com.ch.zn.wzl.demo.reids.cache.info.ICacheProxyInfo;
 import com.ch.zn.wzl.demo.reids.cache.info.impl.SimpleCacheProxyInfo;
 
-public abstract class AbstractMapCacheStrategy extends AbstractRedisCacheStrategy {
+public abstract class AbstractDefaultCacheStrategy extends AbstractRedisCacheStrategy {
 
 	public ICacheProxyInfo initCacheProxyInfo(MethodsMapCache methodsMapCache, Object[] args, Method method) {
 		ICacheProxyInfo iCacheProxyInfo = new SimpleCacheProxyInfo(methodsMapCache.targetArgs(), method, args,

@@ -6,7 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.ch.zn.wzl.demo.reids.cache.strategy.impl.DefaulCacheStrategy;
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD })

@@ -10,6 +10,11 @@ import redis.clients.jedis.SortingParams;
 import redis.clients.jedis.Tuple;
 import redis.clients.jedis.BinaryClient.LIST_POSITION;
 
+/**
+ * 
+ * redis操作命令类
+ *
+ */
 public interface ProxyRedisCommand {
 
 	String set(Integer dbIndex, String key, String value);

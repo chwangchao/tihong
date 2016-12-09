@@ -2,6 +2,11 @@ package com.ch.zn.wzl.demo.reids.cache.serialization;
 
 import java.util.List;
 
+/**
+ * 
+ * 主管缓存序列化
+ *
+ */
 public interface Serialization {
 
 	String toString(Object object);

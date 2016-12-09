@@ -11,6 +11,10 @@ import org.aspectj.lang.reflect.MethodSignature;
 import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
 import com.ch.zn.wzl.demo.reids.cache.strategy.CacheStrategy;
 
+/**
+ * 
+ * 缓存代理aop切面
+ */
 @Aspect
 public class MethodsMapCacheRedisProxy {
 

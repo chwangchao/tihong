@@ -14,6 +14,9 @@ import com.ch.zn.wzl.demo.reids.operation.annotations.RedisOperation;
 
 import redis.clients.jedis.JedisCommands;
 
+/**
+ * 客户端链接代理 aop
+ */
 @Component
 @Aspect
 public class RedisOperationProxy {

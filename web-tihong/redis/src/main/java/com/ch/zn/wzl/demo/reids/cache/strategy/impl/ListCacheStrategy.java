@@ -5,9 +5,9 @@ import java.lang.reflect.Method;
 import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
 import com.ch.zn.wzl.demo.reids.cache.info.ICacheProxyInfo;
 import com.ch.zn.wzl.demo.reids.cache.info.impl.ListCacheProxyInfo;
-import com.ch.zn.wzl.demo.reids.cache.strategy.abs.AbstractMapCacheStrategy;
+import com.ch.zn.wzl.demo.reids.cache.strategy.abs.AbstractDefaultCacheStrategy;
 
-public class ListCacheStrategy extends AbstractMapCacheStrategy {
+public class ListCacheStrategy extends AbstractDefaultCacheStrategy {
 
 	public static final String ListCacheStrategy="ListCacheStrategy";
 	

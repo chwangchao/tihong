@@ -4,6 +4,10 @@ import java.lang.reflect.Method;
 
 import com.ch.zn.wzl.demo.reids.cache.info.abs.AbstractCacheProxyInfo;
 
+/**
+ * object类型的序列化
+ *
+ */
 public class SimpleCacheProxyInfo extends AbstractCacheProxyInfo {
 
 	private String[] targetArgs;
