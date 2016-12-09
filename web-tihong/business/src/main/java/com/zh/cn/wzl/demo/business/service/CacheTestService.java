@@ -7,12 +7,12 @@ import com.github.pagehelper.Page;
 import com.zh.cn.wzl.demo.business.entity.ImUser;
 
 public interface CacheTestService {
-	
+
 	ImUser cacheTest_object();
 
 	ImUser cacheTest_object(Object args);
 
-	ImUser cacheTest_object(Object args, Object args2);
+	ImUser cacheTest_object(Object u, Object p);
 
 	ImUser cacheTest_object(Object args, Object args2, Object args3);
 

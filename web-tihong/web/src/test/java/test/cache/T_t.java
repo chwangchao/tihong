@@ -31,8 +31,10 @@ public class T_t {
 
 	@Test
 	public void testName_cacheTest_object3() throws Exception {
-		ImUser imUser = cacheTestService.cacheTest_object("2", "3");
-		imUser = cacheTestService.cacheTest_object("2", "3");
+		ImUser t=new ImUser();
+		t.setUid("xxx");
+		ImUser imUser = cacheTestService.cacheTest_object(t, "3");
+		imUser = cacheTestService.cacheTest_object(t, "3");
 		System.err.println(imUser);
 	}
 

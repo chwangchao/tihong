@@ -29,13 +29,13 @@ public class CacheTestServiceImpl implements CacheTestService {
 		return imUser;
 	}
 
-	@MethodsMapCache(cacheTime = 300, targetArgs = { "args" })
+	@MethodsMapCache(cacheTime = 300, targetArgs = { "0.uid" })
 	@Override
-	public ImUser cacheTest_object(Object args, Object args2) {
+	public ImUser cacheTest_object(Object u, Object p) {
 		System.out.println("CacheTestServiceImpl.cacheTest_object(2)");
 		ImUser imUser = new ImUser();
-		imUser.setImuid(args.toString());
-		imUser.setImpwd(args.toString());
+		imUser.setImuid(u.toString());
+		imUser.setImpwd(p.toString());
 		return imUser;
 	}
 

@@ -35,7 +35,7 @@ public class MethodsMapCacheRedisProxy {
 		Object val = cacheStrategy.getCache(methodsMapCache, args, method);
 		if (val == null) {
 			val = proceedingJoinPoint.proceed();
-			cacheStrategy.cacheVal(methodsMapCache, args, val);
+			cacheStrategy.cacheVal(methodsMapCache,method, args, val);
 		}
 		return val;
 	}

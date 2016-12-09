@@ -21,7 +21,6 @@ public @interface MethodsMapCache {
 	 */
 	String[] targetArgs() default {};
 
-
 	/**
 	 * 缓存策略 默认的缓存策略
 	 */
@@ -36,6 +35,7 @@ public @interface MethodsMapCache {
 	 * 缓存库 默认 0
 	 */
 	int cacheDb() default 0;
+
 
 	/**
 	 * 额外扩展参数
