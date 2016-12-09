@@ -1,11 +1,13 @@
 package com.zh.cn.wzl.demo.business.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
+import com.ch.zn.wzl.demo.reids.cache.strategy.impl.ListCacheStrategy;
 import com.github.pagehelper.Page;
 import com.zh.cn.wzl.demo.business.entity.ImUser;
 
@@ -29,7 +31,7 @@ public class CacheTestServiceImpl implements CacheTestService {
 		return imUser;
 	}
 
-	@MethodsMapCache(cacheTime = 300, targetArgs = { "0.uid" })
+	@MethodsMapCache(targetArgs = { "0.uid" })
 	@Override
 	public ImUser cacheTest_object(Object u, Object p) {
 		System.out.println("CacheTestServiceImpl.cacheTest_object(2)");
@@ -57,10 +59,15 @@ public class CacheTestServiceImpl implements CacheTestService {
 		return null;
 	}
 
+	@MethodsMapCache(key = "listKey", targetArgs = { "0.uid", "0.impwd",
+			"1.uid" }, cacheTime = 10000, cacheStrategy = ListCacheStrategy.ListCacheStrategy, rsClass = ImUser.class)
 	@Override
-	public List cacheTest_list(Object args, Object args2) {
-		// TODO Auto-generated method stub
-		return null;
+	public List cacheTest_list(Object u, Object p) {
+		System.out.println("CacheTestServiceImpl.cacheTest_list(2)");
+		List list = new ArrayList<>();
+		list.add(u);
+		list.add(p);
+		return list;
 	}
 
 	@Override

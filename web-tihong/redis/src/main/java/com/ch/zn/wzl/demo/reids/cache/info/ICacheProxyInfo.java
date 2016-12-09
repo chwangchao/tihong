@@ -10,9 +10,9 @@ public interface ICacheProxyInfo {
 
 	String toKeyString(Serialization serialization);
 
-	<T> T toKeyObject(Serialization serialization, String string, Class<T> rsClass);
+	<T> Object toKeyObject(Serialization serialization, String string, Class<T> rsClass);
 
-	String toValString(Serialization serialization);
+	String toValString(Serialization serialization,Object val);
 
-	<T> T toValObject(Serialization serialization, String string, Class<T> rsClass);
+	<T> Object toValObject(Serialization serialization, String string, Class<T> rsClass);
 }

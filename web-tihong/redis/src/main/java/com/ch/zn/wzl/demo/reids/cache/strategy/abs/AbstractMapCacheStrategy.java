@@ -3,35 +3,54 @@ package com.ch.zn.wzl.demo.reids.cache.strategy.abs;
 import java.lang.reflect.Method;
 
 import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
+import com.ch.zn.wzl.demo.reids.cache.info.ICacheProxyInfo;
+import com.ch.zn.wzl.demo.reids.cache.info.impl.SimpleCacheProxyInfo;
 
-public abstract class AbstractMapCacheStrategy extends AbstractCacheStrategy {
+public abstract class AbstractMapCacheStrategy extends AbstractRedisCacheStrategy {
+
+	public ICacheProxyInfo initCacheProxyInfo(MethodsMapCache methodsMapCache, Object[] args, Method method) {
+		ICacheProxyInfo iCacheProxyInfo = new SimpleCacheProxyInfo(methodsMapCache.targetArgs(), method, args,
+				methodsMapCache.optoins());
+		return iCacheProxyInfo;
+	}
+
+	public Object toValObject(ICacheProxyInfo iCacheProxyInfo, String serializeString, Class<?> cls) {
+		return iCacheProxyInfo.toValObject(valSerialization, serializeString, cls);
+	}
 
 	@Override
 	public Object getCache(MethodsMapCache methodsMapCache, Object[] args, Method method) {
-		Object[] objects = getTargetArgs(methodsMapCache, method, args);
+		ICacheProxyInfo iCacheProxyInfo = initCacheProxyInfo(methodsMapCache, args, method);
 		String rootKey = getkey(methodsMapCache);
-		String string;
+		String serializeString;
+
+		String key = iCacheProxyInfo.toKeyString(keySerialization);
+		int cacheDb = getCacheDb(methodsMapCache);
+
 		if (rootKey == null) {
-			string = get(getCacheDb(methodsMapCache), keySerialization.toString(objects), methodsMapCache.optoins());
+			serializeString = get(cacheDb, key, methodsMapCache.optoins());
 		} else {
-			string = hget(getCacheDb(methodsMapCache), rootKey, keySerialization.toString(objects),
-					methodsMapCache.optoins());
+			serializeString = hget(cacheDb, rootKey, key, methodsMapCache.optoins());
 		}
-		return valSerialization.toObject(string, method.getReturnType());
+		Object object = toValObject(iCacheProxyInfo, serializeString, method.getClass());
+		return object;
 	}
 
 	@Override
 	public void cacheVal(MethodsMapCache methodsMapCache, Method method, Object[] args, Object val) {
-		Object[] objects = getTargetArgs(methodsMapCache, method, args);
+		ICacheProxyInfo iCacheProxyInfo = initCacheProxyInfo(methodsMapCache, args, method);
 		String rootKey = getkey(methodsMapCache);
+
+		String keyString = iCacheProxyInfo.toKeyString(keySerialization);
+		int cacheDb = getCacheDb(methodsMapCache);
+		String valString = iCacheProxyInfo.toValString(valSerialization, val);
+		int cacheTime = getCacheTime(methodsMapCache);
+
 		if (rootKey == null) {
-			set(getCacheDb(methodsMapCache), keySerialization.toString(objects), valSerialization.toString(val),
-					getCacheTime(methodsMapCache), methodsMapCache.optoins());
+			set(cacheDb, keyString, valString, cacheTime, methodsMapCache.optoins());
 		} else {
-			hset(getCacheDb(methodsMapCache), rootKey, keySerialization.toString(objects),
-					valSerialization.toString(val), getCacheTime(methodsMapCache), methodsMapCache.optoins());
+			hset(cacheDb, rootKey, keyString, valString, cacheTime, methodsMapCache.optoins());
 		}
 	}
-
 
 }

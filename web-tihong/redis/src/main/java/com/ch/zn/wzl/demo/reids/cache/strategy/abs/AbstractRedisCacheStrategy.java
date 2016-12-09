@@ -1,19 +1,11 @@
 package com.ch.zn.wzl.demo.reids.cache.strategy.abs;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.util.ReflectionUtils;
-
 import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
 import com.ch.zn.wzl.demo.reids.cache.serialization.Serialization;
 import com.ch.zn.wzl.demo.reids.cache.strategy.CacheStrategy;
 import com.ch.zn.wzl.demo.reids.operation.helper.ProxyRedisCommand;
 
-public abstract class AbstractCacheStrategy implements CacheStrategy {
+public abstract class AbstractRedisCacheStrategy implements CacheStrategy {
 
 	protected int defaultCacheTime;
 
@@ -100,46 +92,6 @@ public abstract class AbstractCacheStrategy implements CacheStrategy {
 	public void hset(int db, String key, String field, String val, int time, String options) {
 		proxyRedisCommand.hset(db, key, field, val);
 		proxyRedisCommand.expire(db, key, time);
-	}
-
-	public Object[] getTargetArgs(MethodsMapCache methodsMapCache, Method method, Object[] args) {
-		String[] target = methodsMapCache.targetArgs();
-		if (target.length == 0) {
-			return args;
-		}
-		List<Object> list = new ArrayList<>();
-		String[] temp;
-		Object tempO;
-		for (String string : target) {
-			temp = string.split("\\.");
-			tempO = args;
-			for (int i = 0; i < temp.length; i++) {
-				tempO = getTragetArgs(tempO, temp[i]);
-			}
-			list.add(tempO);
-		}
-
-		return list.toArray();
-	}
-
-	private Object getTragetArgs(Object object, String field) {
-
-		if (field == null) {
-			return object;
-		} else if (object instanceof Map) {
-			Map temp = (Map) object;
-			return temp.get(field);
-		} else if (object instanceof List) {
-			List temp = (List) object;
-			return temp.get(Integer.parseInt(field));
-		} else if (object instanceof Object[]) {
-			Object[] temp = (Object[]) object;
-			return temp[Integer.parseInt(field)];
-		} else {
-			Field field2 = ReflectionUtils.findField(object.getClass(), field);
-			field2.setAccessible(true);
-			return ReflectionUtils.getField(field2, object);
-		}
 	}
 
 }

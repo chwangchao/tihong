@@ -37,11 +37,20 @@
 	<bean id="FastJsonSerialization"
 		class="com.ch.zn.wzl.demo.reids.cache.serialization.impl.FastJsonSerialization" />
 
-	<bean id="DefaultAbstractMapCacheStrategy"
-		class="com.ch.zn.wzl.demo.reids.cache.strategy.impl.DefaultAbstractMapCacheStrategy">
+	<bean id="DefaulCacheStrategy"
+		class="com.ch.zn.wzl.demo.reids.cache.strategy.impl.DefaulCacheStrategy">
 		<property name="proxyRedisCommand" ref="proxyRedisCommand" />
 		<property name="keySerialization" ref="FastJsonSerialization" />
 		<property name="valSerialization" ref="FastJsonSerialization" />
+		<property name="defaultCacheTime" value="500"></property>
+	</bean>
+	
+	<bean id="ListCacheStrategy"
+		class="com.ch.zn.wzl.demo.reids.cache.strategy.impl.ListCacheStrategy">
+		<property name="proxyRedisCommand" ref="proxyRedisCommand" />
+		<property name="keySerialization" ref="FastJsonSerialization" />
+		<property name="valSerialization" ref="FastJsonSerialization" />
+		<property name="defaultCacheTime" value="500"></property>
 	</bean>
 
 
@@ -49,7 +58,8 @@
 		<property name="cacheStrategyMap">
 			<map key-type="java.lang.String"
 				value-type="com.ch.zn.wzl.demo.reids.cache.strategy.CacheStrategy">
-				<entry key="DefaultAbstractMapCacheStrategy" value-ref="DefaultAbstractMapCacheStrategy"></entry>
+				<entry key="DefaulCacheStrategy" value-ref="DefaulCacheStrategy"></entry>
+				<entry key="ListCacheStrategy" value-ref="ListCacheStrategy"></entry>
 			</map>
 		</property>
 	</bean>

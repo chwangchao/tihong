@@ -9,6 +9,9 @@ import com.ch.zn.wzl.demo.reids.cache.annotations.MethodsMapCache;
  */
 public interface CacheStrategy {
 
+	/**
+	 *名称
+	 */
 	String getStrategy();
 
 	void cacheVal(MethodsMapCache mapCaches, Method method, Object[] args, Object val);
