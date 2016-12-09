@@ -9,20 +9,25 @@
 	<context:component-scan base-package="com.ch.zn.wzl.demo.reids">
 	</context:component-scan>
 
+	<!-- 基础池 -->
 	<bean id="GenericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
 		<property name="maxIdle" value="60000" />
 		<property name="testOnBorrow" value="true" />
 	</bean>
 
+	<!-- redis 池 -->
 	<bean id="pool0" class="redis.clients.jedis.ShardedJedisPool">
 		<constructor-arg index="0" ref="GenericObjectPoolConfig" />
 		<constructor-arg index="1">
 			<list>
-				<value>http://:battest@121.43.160.149:6380/9</value>
+				<!-- <value>http://:battest@121.43.160.149:6380/0</value> -->
+				<value>http://127.0.0.1:6379/0</value>
 			</list>
 		</constructor-arg>
 	</bean>
 
+
+	<!-- 客户端 -->
 	<bean class="com.ch.zn.wzl.demo.reids.client.sharded.ShardedRedisClient">
 		<property name="poolsMap">
 			<map>
@@ -31,12 +36,15 @@
 		</property>
 	</bean>
 
+	<!-- 客戶端代理 -->
 	<bean id="proxyRedisCommand"
 		class="com.ch.zn.wzl.demo.reids.operation.helper.ShardedProxyRedisCommand" />
 
+	<!-- 序列化 -->
 	<bean id="FastJsonSerialization"
 		class="com.ch.zn.wzl.demo.reids.cache.serialization.impl.FastJsonSerialization" />
 
+	<!-- 缓存策略 -->
 	<bean id="DefaulCacheStrategy"
 		class="com.ch.zn.wzl.demo.reids.cache.strategy.impl.DefaulCacheStrategy">
 		<property name="proxyRedisCommand" ref="proxyRedisCommand" />
@@ -44,7 +52,8 @@
 		<property name="valSerialization" ref="FastJsonSerialization" />
 		<property name="defaultCacheTime" value="500"></property>
 	</bean>
-	
+
+	<!-- 缓存策略 -->
 	<bean id="ListCacheStrategy"
 		class="com.ch.zn.wzl.demo.reids.cache.strategy.impl.ListCacheStrategy">
 		<property name="proxyRedisCommand" ref="proxyRedisCommand" />
@@ -53,7 +62,7 @@
 		<property name="defaultCacheTime" value="500"></property>
 	</bean>
 
-
+	<!-- 缓存代理 -->
 	<bean class="com.ch.zn.wzl.demo.reids.cache.proxy.MethodsMapCacheRedisProxy">
 		<property name="cacheStrategyMap">
 			<map key-type="java.lang.String"
