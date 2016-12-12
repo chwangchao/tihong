@@ -22,7 +22,7 @@ public class CacheTestServiceImpl implements CacheTestService {
 		return imUser;
 	}
 
-	@MethodsMapCache(cacheTime = 300, key = "testKey")
+	@MethodsMapCache(cacheTime = -1, key = "testKey")
 	@Override
 	public ImUser cacheTest_object(Object args) {
 		System.out.println("CacheTestServiceImpl.cacheTest_object(1)");
@@ -31,7 +31,7 @@ public class CacheTestServiceImpl implements CacheTestService {
 		return imUser;
 	}
 
-	@MethodsMapCache(targetArgs = { "0.uid" })
+	@MethodsMapCache(targetArgs = { "0.uid" },cacheTime=-1)
 	@Override
 	public ImUser cacheTest_object(Object u, Object p) {
 		System.out.println("CacheTestServiceImpl.cacheTest_object(2)");
@@ -60,7 +60,7 @@ public class CacheTestServiceImpl implements CacheTestService {
 	}
 
 	@MethodsMapCache(key = "listKey", targetArgs = { "0.uid", "0.impwd",
-			"1.uid" }, cacheTime = 10000, cacheStrategy = ListCacheStrategy.ListCacheStrategy, rsClass = ImUser.class)
+			"1.uid" }, cacheTime = 1000, cacheStrategy = ListCacheStrategy.ListCacheStrategy, rsClass = ImUser.class)
 	@Override
 	public List cacheTest_list(Object u, Object p) {
 		System.out.println("CacheTestServiceImpl.cacheTest_list(2)");

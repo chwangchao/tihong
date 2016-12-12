@@ -1,7 +1,5 @@
 package test.cache;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -61,7 +59,7 @@ public class T_t {
 		ImUser i1=getIm();
 		ImUser i2=getIm();
 		List list = cacheTestService.cacheTest_list(i1, i2);
-		//list = cacheTestService.cacheTest_list(i1, i2);
+		list = cacheTestService.cacheTest_list(i1, i2);
 		for (Object object : list) {
 			System.err.println(object.getClass());
 		}
