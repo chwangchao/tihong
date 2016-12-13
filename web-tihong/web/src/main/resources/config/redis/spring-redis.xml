@@ -36,6 +36,10 @@
 		</property>
 	</bean>
 
+	<bean class="com.ch.zn.wzl.demo.reids.operation.helper.DefaultRedisCommand">
+		<property name="proxyRedisCommand" ref="proxyRedisCommand"></property>
+	</bean>
+
 	<!-- 客戶端代理 -->
 	<bean id="proxyRedisCommand"
 		class="com.ch.zn.wzl.demo.reids.operation.helper.ShardedProxyRedisCommand" />
