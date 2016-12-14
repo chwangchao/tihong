@@ -38,6 +38,7 @@
 
 	<bean class="com.ch.zn.wzl.demo.reids.operation.helper.DefaultRedisCommand">
 		<property name="proxyRedisCommand" ref="proxyRedisCommand"></property>
+		<property name="defaultDb" value="0"></property>
 	</bean>
 
 	<!-- 客戶端代理 -->
