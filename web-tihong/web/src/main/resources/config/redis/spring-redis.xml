@@ -20,7 +20,6 @@
 		<constructor-arg index="0" ref="GenericObjectPoolConfig" />
 		<constructor-arg index="1">
 			<list>
-				<!-- <value>http://:battest@121.43.160.149:6380/0</value> -->
 				<value>http://127.0.0.1:6379/0</value>
 			</list>
 		</constructor-arg>
